@@ -13,8 +13,6 @@ export class PeliculasListComponent{
 	public peliculaElegida:Pelicula;
 	public mostrarDatos:boolean;
 	public peliculas;
-
-	public datoServicio;
  	
 	constructor(private _peliculasService: PeliculasService){
 

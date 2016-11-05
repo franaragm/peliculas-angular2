@@ -1,10 +1,33 @@
-<h1>{{titulo}}</h1>
-<nav>
-	<ul>
-		<li><a [routerLink]="['Peliculas']">Inicio</a></li>
-		<li><a [routerLink]="['CrearPelicula']">Añadir pelicula</a></li>
-		<li><a [routerLink]="['Contacto']">Contacto</a></li>
-	</ul>
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" [routerLink]="['/']">{{ titulo }}</a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a [routerLink]="['/peliculas']">Inicio</a></li>
+				<li><a [routerLink]="['/crear-pelicula']">Añadir pelicula</a></li>
+				<li><a [routerLink]="['/contacto']">Contacto</a></li>
+			</ul>
+
+		</div>
+	</div>
 </nav>
-<router-outlet></router-outlet>
+
+<div class="container content">
+
+    <router-outlet></router-outlet>
+
+</div> <!-- /container -->
+
 <peliculas-footer></peliculas-footer>
+
+
+

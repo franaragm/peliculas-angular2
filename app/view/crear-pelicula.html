@@ -1,22 +1,31 @@
-<h2>Crear pelicula</h2>
-<form #miFormulario="ngForm" (ngSubmit)="onSubmit()">
-	<p>
-		Titulo:
-		<input type="text" #titulo="ngForm" 
-				ngControl="titulo" [(ngModel)]="nuevaPelicula.titulo" required minlength="5"/>
-		<span *ngIf="!titulo.valid">No valido</span>
-	</p>
-	<p>
-		Director:
-		<input type="text" #director="ngForm" 
-		ngControl="director" [(ngModel)]="nuevaPelicula.director" required pattern="[A-Za-z\s]*"/>
-		<span *ngIf="!director.valid">No valido</span>
-	</p>
-	<p>
-		Año:
-		<input type="text" #anio="ngForm" 
-		ngControl="anio" [(ngModel)]="nuevaPelicula.anio" required pattern="[0-9]{4}"/>
-		<span *ngIf="!anio.valid">No valido</span>
-	</p>
-	<input type="submit" value="Crear pelicula" [disabled]="!miFormulario.form.valid" />
-</form>
+<div class="row">
+	<div class="col-md-12">
+		<h2>Crear pelicula</h2>
+		<form #miFormulario="ngForm" (ngSubmit)="onSubmit()">
+
+            <div class="form-group">
+				<label for="input-titulo">Título</label>
+				<input type="text" class="form-control" id="input-titulo" placeholder="Titulo" aria-describedby="errorBlock1"
+                       #titulo="ngModel" name="titulo" [(ngModel)]="nuevaPelicula.titulo" required minlength="5">
+				<span *ngIf="!titulo.valid" id="errorBlock1" class="help-block">Mínimo 5 caracteres</span>
+			</div>
+
+			<div class="form-group">
+				<label for="input-director">Director</label>
+				<input type="text" class="form-control" id="input-director" placeholder="Director" aria-describedby="errorBlock2"
+                       #director="ngModel" name="director" [(ngModel)]="nuevaPelicula.director" required pattern="[A-Za-z\s]*">
+				<span *ngIf="!director.valid" id="errorBlock2" class="help-block">Mínimo 5 caracteres</span>
+			</div>
+
+			<div class="form-group">
+				<label for="input-anio">Año</label>
+				<input type="text" class="form-control" id="input-anio" aria-describedby="errorBlock3"
+                       #anio="ngModel" name="anio" [(ngModel)]="nuevaPelicula.anio" required pattern="[0-9]{4}">
+				<span *ngIf="!anio.valid" id="errorBlock3" class="help-block">Tiene que ser un año con 4 cifras</span>
+			</div>
+
+			<button type="submit" class="btn btn-default" [disabled]="!miFormulario.form.valid">Crear pelicula</button>
+		</form>
+	</div>
+</div>
+

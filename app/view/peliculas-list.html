@@ -1,30 +1,36 @@
+<div class="row">
+	<div class="col-md-8">
 
-<p>{{datoServicio}}</p>
+		<div class="input-group">
+			<span class="input-group-addon" id="cambiar-titulo">Cambiar titulo:</span>
+			<input type="text" class="form-control" aria-describedby="cambiar-titulo" (keypress)="debug(true)" [(ngModel)]="pelicula.titulo">
+		</div>
 
-<p>Pelicula favorita:</p>
+		<h3>Listado de peliculas:</h3>
 
-<button (click)="onShowHide(true)" 	[class.showingData]="mostrarDatos === true">Mostrar datos</button>
-<button (click)="onShowHide(false)" [class.showingData]="mostrarDatos === false">Ocultar datos</button>
-<ul *ngIf="mostrarDatos === true">
-	<li>Titulo: <strong>{{pelicula.titulo}}</strong></li>
-	<li>Director: <strong>{{pelicula.director}}</strong></li>
-	<li>Año: <strong>{{pelicula.anio}}</strong></li>
-</ul>
+		<div class="list-group">
+			<a class="list-group-item" *ngFor="let pelicula of peliculas" (click)="onCambiarPelicula(pelicula)" [class.active]="peliculaElegida.titulo === pelicula.titulo">
+				<h4 class="list-group-item-heading">Titulo: <strong>{{ pelicula.titulo }}</strong></h4>
+				<ul>
+					<li>Director: <strong>{{ pelicula.director }}</strong></li>
+					<li *ngIf="pelicula.anio">Año: <strong>{{ pelicula.anio }}</strong></li>
+				</ul>
+				<a [routerLink]="['/crear-pelicula', pelicula.titulo, pelicula.director, pelicula.anio ]" class="btn btn-default" role="button">Añadir pelicula basada en esta</a>
+			</a>
+		</div>
 
-<p>
-	Cambiar titulo:
-	<input type="text" (keypress)="debug(true)" [(ngModel)]="pelicula.titulo" />
-</p>
+	</div>
 
-<hr/>
-<p>Listado de peliculas:</p>
-<ul>
-	<ul *ngFor="#pelicula of peliculas" style="margin-bottom: 20px;">
-		<li (click)="onCambiarPelicula(pelicula)" class="pelicula-title" [class.clicked]="peliculaElegida.titulo === pelicula.titulo">
-			Titulo: <strong>{{pelicula.titulo}}
-		</strong></li>
-		<li>Director: <strong>{{pelicula.director}}</strong></li>
-		<li *ngIf="pelicula.anio">Año: <strong>{{pelicula.anio}}</strong></li>
-		<li><a [routerLink]="['CrearPeliculaBasadaEnOtra', {titulo: pelicula.titulo, director: pelicula.director, anio: pelicula.anio}]">Añadir pelicula basada en esta</a></li>
-	</ul>
-</ul>
+	<div class="col-md-4">
+		<h4>Mi Pelicula seleccionada:</h4>
+
+		<button type="button" class="btn btn-primary" (click)="onShowHide(true)" 	[class.showingData]="mostrarDatos === true">Mostrar datos</button>
+		<button type="button" class="btn btn-primary" (click)="onShowHide(false)" [class.showingData]="mostrarDatos === false">Ocultar datos</button>
+
+		<ul *ngIf="mostrarDatos === true">
+			<li>Titulo: <strong>{{ pelicula.titulo }}</strong></li>
+			<li>Director: <strong>{{ pelicula.director }}</strong></li>
+			<li>Año: <strong>{{ pelicula.anio }}</strong></li>
+		</ul>
+	</div>
+</div>
